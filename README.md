@@ -65,6 +65,8 @@ pod 'Filament', '~> 1.68.5'
   to use the material compiler `matc` and how to write custom materials.
 - [Material Properties](https://google.github.io/filament/notes/material_properties.html), a reference
   sheet for the standard material model.
+- [Engine Roadmap](https://google.github.io/filament/notes/roadmap.html), a renderer-first roadmap
+  outlining engine-style subsystems and feature parity targets.
 
 ## Examples
 
