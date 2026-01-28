@@ -32,7 +32,7 @@ sudo apt install clang-16 libglu1-mesa-dev libc++-16-dev libc++abi-16-dev \
 - **Clang:** 16+ (16 for CI, 18 works locally)
 - **Ninja:** 1.10+ (recommended) or Make
 - **Python:** 3.7+ (for build scripts)
-- **Android NDK:** 29.0.14206865 (for Android builds)
+- **Android NDK:** 25.1+ minimum, 29.0.14206865 used in CI (for Android builds)
 - **Emscripten:** 3.1.60 (for WebGL builds)
 - **Java:** 17 (for Android builds)
 
@@ -154,7 +154,7 @@ cd build/linux && printf "y" | ./build.sh presubmit
 
 ## GitHub Actions Workflows
 
-The repository has extensive CI that runs on every PR:
+The repository has extensive CI that runs on every PR (11 jobs):
 
 1. **build-desktop-linux** - Linux desktop build + test_material_parser
 2. **build-desktop-mac** - macOS desktop build + tests
@@ -164,8 +164,9 @@ The repository has extensive CI that runs on every PR:
 6. **build-web** - WebGL build
 7. **validate-docs** - Documentation validation
 8. **test-renderdiff** - Rendering comparison tests
-9. **test-code-correctness** - clang-tidy checks
-10. **test-backend** - Backend-specific tests
+9. **validate-wgsl-webgpu** - WebGPU WGSL shader validation
+10. **test-code-correctness** - clang-tidy checks
+11. **test-backend** - Backend-specific tests
 
 **Key CI Script:** Each platform has a `build/{platform}/build.sh` script that CI calls with the `presubmit` target.
 
@@ -190,7 +191,7 @@ The repository has extensive CI that runs on every PR:
 
 - **Formatting:** 4-space indent, 100 columns, braces at end of line
 - **Naming:**
-  - Classes/methods: lowerCamelCase
+  - Classes/methods: lower camelcase
   - Constants: UPPER_CASE
   - Private members: prefix with `m` (e.g., `mAttributeName`)
   - Static members: prefix with `s`
